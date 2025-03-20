@@ -20,7 +20,13 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<Cliente>> findAll(){
-        return new ResponseEntity<>(clienteService.findAll(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(clienteService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> findById(@PathVariable Long id){
+        Cliente clienteRetorno = clienteService.findById(id);
+        return new ResponseEntity<>(clienteRetorno, HttpStatus.OK);
     }
 
     @PostMapping

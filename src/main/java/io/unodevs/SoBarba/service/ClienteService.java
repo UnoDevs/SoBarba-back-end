@@ -1,5 +1,6 @@
 package io.unodevs.SoBarba.service;
 
+import io.unodevs.SoBarba.exception.ClientNotFoundException;
 import io.unodevs.SoBarba.model.Cliente;
 import io.unodevs.SoBarba.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,17 @@ public class ClienteService {
     }
 
     public Cliente findById(Long id){
-        Optional<Cliente> clienteOpcional = clienteRepository.findById(id);
-        return clienteOpcional.orElse(null);
+        return validateOptional(clienteRepository.findById(id));
     }
 
     public Cliente create(Cliente cliente){
         return clienteRepository.save(cliente);
+    }
+
+    public Cliente validateOptional(Optional<Cliente> opt){
+        if(opt.isPresent()){
+            return opt.get();
+        }
+        throw new ClientNotFoundException("Cliente pesquisado não encontrado!");
     }
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Servico {
+public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class Servico {
 
     private boolean status;
 
-    public Servico() {
+    public Service() {
     }
 
-    public Servico(Long id, String nome, double valor, int tempo, String descricao, boolean status) {
+    public Service(Long id, String nome, double valor, int tempo, String descricao, boolean status) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
@@ -34,7 +34,7 @@ public class Servico {
         this.status = status;
     }
 
-    public Servico(String nome, double valor, int tempo, String descricao, boolean status) {
+    public Service(String nome, double valor, int tempo, String descricao, boolean status) {
         this.nome = nome;
         this.valor = valor;
         this.tempo = tempo;

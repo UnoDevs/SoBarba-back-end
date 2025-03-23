@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Cliente {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,17 +20,17 @@ public class Cliente {
 
     private LocalDate dataNascimento;
 
-    public Cliente() {
+    public Client() {
     }
 
-    public Cliente(Long id, String nome, String descricao, LocalDate dataNascimento) {
+    public Client(Long id, String nome, String descricao, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.dataNascimento = dataNascimento;
     }
 
-    public Cliente(String nome, String descricao, LocalDate dataNascimento) {
+    public Client(String nome, String descricao, LocalDate dataNascimento) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataNascimento = dataNascimento;

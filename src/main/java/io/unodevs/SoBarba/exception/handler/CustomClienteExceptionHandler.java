@@ -1,6 +1,6 @@
 package io.unodevs.SoBarba.exception.handler;
 
-import io.unodevs.SoBarba.controller.ClienteController;
+import io.unodevs.SoBarba.controller.ClientController;
 import io.unodevs.SoBarba.exception.ClientNotFoundException;
 import io.unodevs.SoBarba.exception.ExceptionResponse;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 @RestController
-@ControllerAdvice(assignableTypes = ClienteController.class)
+@ControllerAdvice(assignableTypes = ClientController.class)
 public class CustomClienteExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)

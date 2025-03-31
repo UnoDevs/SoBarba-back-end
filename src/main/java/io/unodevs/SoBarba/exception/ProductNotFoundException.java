@@ -3,8 +3,8 @@ package io.unodevs.SoBarba.exception;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus
-public class ServiceNotFoundException extends RuntimeException {
-    public ServiceNotFoundException(String message) {
+public class ProductNotFoundException extends RuntimeException {
+    public ProductNotFoundException(String message) {
         super(message);
     }
 }

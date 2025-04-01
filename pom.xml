@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>23</java.version>
 		<springdoc.version>2.7.0</springdoc.version>
+		<maven.compiler.source>23</maven.compiler.source>
+		<maven.compiler.target>23</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>

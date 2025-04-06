@@ -23,7 +23,6 @@ public class Task {
     private boolean isActive;
 
     public  Task() {
-
     }
 
     public Task(Long id, String name, double price, int timeConclusion, String description, boolean isActive) {

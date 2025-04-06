@@ -1,6 +1,5 @@
 package io.unodevs.SoBarba.service;
 
-import io.unodevs.SoBarba.exception.ClientNotFoundException;
 import io.unodevs.SoBarba.model.Person;
 import io.unodevs.SoBarba.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
 @Service
 public class PersonService {
@@ -41,13 +42,4 @@ public class PersonService {
         Person returnPerson = findById(id);
         personRepository.deleteById(returnPerson.getId());
     }
-
-    public Person validateOptional(Optional<Person> opt){
-        if(opt.isPresent()){
-            return opt.get();
-        }
-        throw new ClientNotFoundException("Cliente pesquisado não encontrado!");
-    }
-
-
 }

@@ -1,6 +1,5 @@
 package io.unodevs.SoBarba.service;
 
-import io.unodevs.SoBarba.exception.ProductNotFoundException;
 import io.unodevs.SoBarba.model.Product;
 import io.unodevs.SoBarba.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
 @Service
 public class ProductService {
@@ -51,14 +52,4 @@ public class ProductService {
         productRepository.deleteById(id);
         return productDeleted;
     }
-
-    private Product validateOptional(Optional<Product> opt) {
-        if (opt.isPresent()) {
-            return opt.get();
-        }
-        throw new ProductNotFoundException("Produto pesquisado não encontrado!");
-
-    }
-
-
 }

@@ -1,15 +1,14 @@
 package io.unodevs.SoBarba.service;
 
-import io.unodevs.SoBarba.exception.BarberShopNotFoundException;
-import io.unodevs.SoBarba.exception.TaskNotFoundException;
 import io.unodevs.SoBarba.model.BarberShop;
-import io.unodevs.SoBarba.model.Product;
 import io.unodevs.SoBarba.repository.BarberShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
 @Service
 public class BarberShopService {
@@ -50,12 +49,5 @@ public class BarberShopService {
         BarberShop barberShopDeleted = validateOptional(barberShopRepository.findById(id));
         barberShopRepository.delete(barberShopDeleted);
         return barberShopDeleted;
-    }
-
-    private BarberShop validateOptional(Optional<BarberShop> opt){
-        if(opt.isPresent()){
-            return opt.get();
-        }
-        throw new BarberShopNotFoundException("Barbearia pesquisada não encontrado!");
     }
 }

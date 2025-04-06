@@ -2,11 +2,9 @@ package io.unodevs.SoBarba.service;
 
 import io.unodevs.SoBarba.model.Task;
 import io.unodevs.SoBarba.repository.TaskRepository;
-import io.unodevs.SoBarba.service.util.ValidateEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 

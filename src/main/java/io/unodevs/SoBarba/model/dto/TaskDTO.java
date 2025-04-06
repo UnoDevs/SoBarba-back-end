@@ -16,6 +16,7 @@ public class TaskDTO implements Serializable {
     private int timeConclusion;
     private String description;
     private Boolean active = true;
+
     public TaskDTO() {
     }
 

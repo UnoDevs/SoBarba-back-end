@@ -1,12 +1,13 @@
 package io.unodevs.SoBarba.service;
 
+import io.unodevs.SoBarba.mapper.ProductMapper;
 import io.unodevs.SoBarba.model.Product;
+import io.unodevs.SoBarba.model.dto.ProductDTO;
 import io.unodevs.SoBarba.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
@@ -15,41 +16,37 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductMapper productMapper;
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<ProductDTO> findAll() {
+        return productMapper.toProductDTOList(productRepository.findAll());
     }
 
-    public Product findById(Long id) {
-        return validateOptional(productRepository.findById(id));
+    public ProductDTO findById(Long id) {
+        return productMapper.toProductDTO(validateOptional(productRepository.findById(id)));
     }
 
-    public Product create(Product product) {
-        return productRepository.save(product);
+    public ProductDTO create(ProductDTO product) {
+        Product response = productRepository.save(productMapper.toProduct(product));
+        return productMapper.toProductDTO(response);
     }
 
-    public Product update(Product product, Long id) {
+    public ProductDTO updateById(ProductDTO product, Long id) {
+        ProductDTO productDataDTO = findById(id);
 
-        Product productUpdated = validateOptional(
-                productRepository.findById(id).map(val -> {
-                    val.setActive(product.isActive());
-                    val.setHasStock(product.isHasStock());
-                    val.setName(product.getName());
-                    val.setPurchasePrice(product.getPurchasePrice());
-                    val.setSalePrice(product.getSalePrice());
-                    return val;
-                })
-        );
+        productDataDTO.setName(product.getName());
+        productDataDTO.setHasStock(product.getHasStock());
+        productDataDTO.setSalePrice(product.getSalePrice());
+        productDataDTO.setPurchasePrice(product.getPurchasePrice());
+        productDataDTO.setActive(product.getActive());
 
-        productRepository.save(productUpdated);
-
-        return productUpdated;
-
+        productRepository.save(productMapper.toProduct(productDataDTO));
+        return productDataDTO;
     }
 
-    public Product delete(Long id) {
-        Product productDeleted = validateOptional(productRepository.findById(id));
-        productRepository.deleteById(id);
-        return productDeleted;
+    public void delete(Long id) {
+        ProductDTO product = findById(id);
+        productRepository.deleteById(product.getId());
     }
 }

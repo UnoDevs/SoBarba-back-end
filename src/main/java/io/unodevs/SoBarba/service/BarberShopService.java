@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
@@ -29,7 +28,7 @@ public class BarberShopService {
         return barberShopRepository.save(barberShop);
     }
 
-    public BarberShop update(BarberShop barberShop, Long id) {
+    public BarberShop updateById(BarberShop barberShop, Long id) {
         BarberShop barberShopUpdated = validateOptional(
                 barberShopRepository.findById(id).map(val -> {
                     val.setName(barberShop.getName());

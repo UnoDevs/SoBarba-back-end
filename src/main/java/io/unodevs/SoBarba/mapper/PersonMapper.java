@@ -10,6 +10,6 @@ import java.util.List;
 public interface PersonMapper {
     Person toPerson(PersonDTO dto);
     PersonDTO toPersonDTO(Person entity);
-    List<Person> toPersonList(List<PersonDTO> dto);
+    List<Person> toPersonList(List<PersonDTO> dtos);
     List<PersonDTO> toPersonDTOList(List<Person> entities);
 }

@@ -1,6 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
 import io.unodevs.SoBarba.model.Person;
+import io.unodevs.SoBarba.model.dto.PersonDTO;
 import io.unodevs.SoBarba.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,32 +20,32 @@ public class PersonController {
     public PersonService personService;
 
     @GetMapping
-    public ResponseEntity<List<Person>> findAll(){
+    public ResponseEntity<List<PersonDTO>> findAll(){
         return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Person> findById(@PathVariable Long id){
-        Person personReturn = personService.findById(id);
+    public ResponseEntity<PersonDTO> findById(@PathVariable Long id){
+        PersonDTO personReturn = personService.findById(id);
         return new ResponseEntity<>(personReturn, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Person> create(@RequestBody Person person){
+    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(person.getId()).toUri();
-        Person response = personService.create(person);
+        PersonDTO response = personService.create(person);
         return ResponseEntity.created(uri).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person){
-        Person response = personService.updateById(id, person);
+    public ResponseEntity<PersonDTO> update(@PathVariable Long id, @RequestBody PersonDTO person){
+        PersonDTO response = personService.updateById(id, person);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Person> delete(@PathVariable Long id){
+    public ResponseEntity<PersonDTO> delete(@PathVariable Long id){
         personService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

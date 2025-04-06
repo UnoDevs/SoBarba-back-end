@@ -1,30 +1,25 @@
-package io.unodevs.SoBarba.model;
+package io.unodevs.SoBarba.model.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity
-public class Person {
+public class PersonDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private static final long serialVersionUID = 1L;
+
     private Long id;
     private String name;
     private String description;
     private LocalDate birthDate;
     private String email;
     private String phone;
-    private Boolean active;
+    private Boolean active = true;
 
-    public Person() {
+    public PersonDTO() {
     }
 
-    public Person(String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
+    public PersonDTO(String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
         this.name = name;
         this.description = description;
         this.birthDate = birthDate;
@@ -33,7 +28,7 @@ public class Person {
         this.active = active;
     }
 
-    public Person(Long id, String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
+    public PersonDTO(Long id, String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -101,10 +96,9 @@ public class Person {
 
     @Override
     public boolean equals(Object o) {
-
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(description, person.description) && Objects.equals(birthDate, person.birthDate) && Objects.equals(email, person.email) && Objects.equals(phone, person.phone) && Objects.equals(active, person.active);
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(id, personDTO.id) && Objects.equals(name, personDTO.name) && Objects.equals(description, personDTO.description) && Objects.equals(birthDate, personDTO.birthDate) && Objects.equals(email, personDTO.email) && Objects.equals(phone, personDTO.phone) && Objects.equals(active, personDTO.active);
     }
 
     @Override

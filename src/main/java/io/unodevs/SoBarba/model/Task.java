@@ -20,27 +20,20 @@ public class Task {
 
     private String description;
 
-    private boolean isActive;
+    private Boolean active;
 
-    public  Task() {
+    public Task() {
     }
 
-    public Task(Long id, String name, double price, int timeConclusion, String description, boolean isActive) {
+    public Task(Long id, String name, double price, int timeConclusion, String description, boolean active) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.timeConclusion = timeConclusion;
         this.description = description;
-        this.isActive = isActive;
+        this.active = active;
     }
 
-    public Task(String name, double price, int timeConclusion, String description, boolean isActive) {
-        this.name = name;
-        this.price = price;
-        this.timeConclusion = timeConclusion;
-        this.description = description;
-        this.isActive = isActive;
-    }
 
     public Long getId() {
         return id;
@@ -62,10 +55,6 @@ public class Task {
         return description;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -82,7 +71,15 @@ public class Task {
         this.description = description;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

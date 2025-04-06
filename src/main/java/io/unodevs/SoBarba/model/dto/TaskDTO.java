@@ -1,34 +1,55 @@
 package io.unodevs.SoBarba.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 
 public class TaskDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonIgnore
     private Long id;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String name;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private double price;
     private int timeConclusion;
     private String description;
-    @JsonProperty(defaultValue = "true")
-    private boolean isActive;
+    private Boolean active = true;
     public TaskDTO() {
     }
 
-    public TaskDTO(String name, Double price, int timeConclusion, String description, boolean isActive) {
+    public TaskDTO(String name, Double price, int timeConclusion, String description, boolean active) {
         this.name = name;
         this.price = price;
         this.timeConclusion = timeConclusion;
         this.description = description;
-        this.isActive = isActive;
+        this.active = active;
+    }
+
+    public TaskDTO(Long id, String name, double price, int timeConclusion, String description, boolean active) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.timeConclusion = timeConclusion;
+        this.description = description;
+        this.active = active;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getName() {
@@ -37,14 +58,6 @@ public class TaskDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public int getTimeConclusion() {
@@ -63,11 +76,23 @@ public class TaskDTO implements Serializable {
         this.description = description;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TaskDTO taskDTO = (TaskDTO) o;
+        return Double.compare(price, taskDTO.price) == 0 && timeConclusion == taskDTO.timeConclusion && active == taskDTO.active && Objects.equals(id, taskDTO.id) && Objects.equals(name, taskDTO.name) && Objects.equals(description, taskDTO.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, timeConclusion, description, active);
     }
 }

@@ -1,37 +1,30 @@
-package io.unodevs.SoBarba.model;
+package io.unodevs.SoBarba.model.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.io.Serializable;
+import java.util.Objects;
 
-@Entity
-public class BarberShop {
+public class BarberShopDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private static final long serialVersionUID = 1L;
+
     private Long id;
-
     private String name;
-
     private String description;
-
     private String cnpj;
-
     private Boolean active;
 
-    public BarberShop() {
+    public BarberShopDTO() {
     }
 
-    public BarberShop(Long id, String name, String description, String cnpj, boolean active) {
-        this.id = id;
+    public BarberShopDTO(String name, String description, String cnpj, Boolean active) {
         this.name = name;
         this.description = description;
         this.cnpj = cnpj;
         this.active = active;
     }
 
-    public BarberShop(String name, String description, String cnpj, boolean active) {
+    public BarberShopDTO(Long id, String name, String description, String cnpj, Boolean active) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.cnpj = cnpj;
@@ -76,5 +69,18 @@ public class BarberShop {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == null || getClass() != o.getClass()) return false;
+        BarberShopDTO that = (BarberShopDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(cnpj, that.cnpj) && Objects.equals(active, that.active);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, cnpj, active);
     }
 }

@@ -1,49 +1,48 @@
 package io.unodevs.SoBarba.service;
 
 import io.unodevs.SoBarba.exception.ClientNotFoundException;
-import io.unodevs.SoBarba.model.Client;
-import io.unodevs.SoBarba.repository.ClientRepository;
+import io.unodevs.SoBarba.model.Person;
+import io.unodevs.SoBarba.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientService {
+public class PersonService {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private PersonRepository personRepository;
 
-    public List<Client> findAll(){
-        return clientRepository.findAll();
+    public List<Person> findAll(){
+        return personRepository.findAll();
     }
 
-    public Client findById(Long id){
-        return validateOptional(clientRepository.findById(id));
+    public Person findById(Long id){
+        return validateOptional(personRepository.findById(id));
     }
 
-    public Client create(Client client){
-        return clientRepository.save(client);
+    public Person create(Person person){
+        return personRepository.save(person);
     }
 
-    public Client updateById(Long id, Client client) {
-        Client clientData = findById(id);
+    public Person updateById(Long id, Person person) {
+        Person personData = findById(id);
 
-        clientData.setNome(client.getNome());
-        clientData.setDescricao(client.getDescricao());
-        clientData.setDataNascimento(client.getDataNascimento());
+        personData.setNome(person.getNome());
+        personData.setDescricao(person.getDescricao());
+        personData.setDataNascimento(person.getDataNascimento());
 
-        return clientRepository.save(clientData);
+        return personRepository.save(personData);
     }
 
     public void deleteById(Long id){
-        Client returnClient = findById(id);
-        clientRepository.deleteById(returnClient.getId());
+        Person returnPerson = findById(id);
+        personRepository.deleteById(returnPerson.getId());
     }
 
-    public Client validateOptional(Optional<Client> opt){
+    public Person validateOptional(Optional<Person> opt){
         if(opt.isPresent()){
             return opt.get();
         }

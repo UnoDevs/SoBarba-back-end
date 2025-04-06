@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.Client;
-import io.unodevs.SoBarba.service.ClientService;
+import io.unodevs.SoBarba.model.Person;
+import io.unodevs.SoBarba.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,40 +12,40 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/person")
+public class PersonController {
 
     @Autowired
-    public ClientService clientService;
+    public PersonService personService;
 
     @GetMapping
-    public ResponseEntity<List<Client>> findAll(){
-        return new ResponseEntity<>(clientService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Person>> findAll(){
+        return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> findById(@PathVariable Long id){
-        Client clientReturn = clientService.findById(id);
-        return new ResponseEntity<>(clientReturn, HttpStatus.OK);
+    public ResponseEntity<Person> findById(@PathVariable Long id){
+        Person personReturn = personService.findById(id);
+        return new ResponseEntity<>(personReturn, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Client> create(@RequestBody Client client){
+    public ResponseEntity<Person> create(@RequestBody Person person){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(client.getId()).toUri();
-        Client response = clientService.create(client);
+                .buildAndExpand(person.getId()).toUri();
+        Person response = personService.create(person);
         return ResponseEntity.created(uri).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client){
-        Client response = clientService.updateById(id,client);
+    public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person){
+        Person response = personService.updateById(id, person);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Client> delete(@PathVariable Long id){
-        clientService.deleteById(id);
+    public ResponseEntity<Person> delete(@PathVariable Long id){
+        personService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

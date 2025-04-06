@@ -1,24 +1,27 @@
 package io.unodevs.SoBarba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Objects;
 
 @Entity
+@Table(name = "barbershop")
 public class BarberShop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "description")
     private String description;
-
+    @Column(name = "cnpj")
     private String cnpj;
-
+    @Column(name = "active")
     private Boolean active;
+    @OneToMany(mappedBy = "barberShop")
+    private List<Category> categories;
 
     public BarberShop() {
     }
@@ -76,5 +79,25 @@ public class BarberShop {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        BarberShop that = (BarberShop) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(cnpj, that.cnpj) && Objects.equals(active, that.active) && Objects.equals(categories, that.categories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, cnpj, active, categories);
     }
 }

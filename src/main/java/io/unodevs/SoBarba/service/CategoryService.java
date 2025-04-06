@@ -1,8 +1,11 @@
 package io.unodevs.SoBarba.service;
 
+import io.unodevs.SoBarba.mapper.BarberShopMapper;
 import io.unodevs.SoBarba.mapper.CategoryMapper;
+import io.unodevs.SoBarba.model.BarberShop;
 import io.unodevs.SoBarba.model.Category;
 import io.unodevs.SoBarba.model.dto.CategoryDTO;
+import io.unodevs.SoBarba.model.dto.CreateCategoryDTO;
 import io.unodevs.SoBarba.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,11 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
+    private BarberShopService barberShopService;
+    @Autowired
     private CategoryMapper categoryMapper;
+    @Autowired
+    private BarberShopMapper barberShopMapper;
 
     public List<CategoryDTO> findAll(){
         return categoryMapper.toCategoryDTOList(categoryRepository.findAll());
@@ -27,9 +34,11 @@ public class CategoryService {
         return categoryMapper.toCategoryDTO(validateOptional(categoryRepository.findById(id)));
     }
 
-    public CategoryDTO create(CategoryDTO categoryDTO){
-        Category response = categoryRepository.save(categoryMapper.toCategory(categoryDTO));
-        return categoryMapper.toCategoryDTO(response);
+    public CategoryDTO create(CreateCategoryDTO createCategoryDTO){
+        Category category = categoryMapper.toCategory(createCategoryDTO);
+        BarberShop barberShop = barberShopMapper.toBarberShop(barberShopService.findById(createCategoryDTO.getBarberShop()));
+        category.setBarberShop(barberShop);
+        return categoryMapper.toCategoryDTO(categoryRepository.save(category));
     }
 
     public CategoryDTO updateById(Long id, CategoryDTO category){

@@ -1,6 +1,9 @@
 package io.unodevs.SoBarba.model.dto;
 
+import io.unodevs.SoBarba.model.Category;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class BarberShopDTO implements Serializable {
@@ -16,14 +19,7 @@ public class BarberShopDTO implements Serializable {
     public BarberShopDTO() {
     }
 
-    public BarberShopDTO(String name, String description, String cnpj, Boolean active) {
-        this.name = name;
-        this.description = description;
-        this.cnpj = cnpj;
-        this.active = active;
-    }
-
-    public BarberShopDTO(Long id, String name, String description, String cnpj, Boolean active) {
+    public BarberShopDTO(Long id, String name, String description, String cnpj, Boolean active, List<Category> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -70,6 +66,7 @@ public class BarberShopDTO implements Serializable {
     public void setActive(Boolean active) {
         this.active = active;
     }
+
 
     @Override
     public boolean equals(Object o) {

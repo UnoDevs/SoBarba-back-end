@@ -1,20 +1,23 @@
 package io.unodevs.SoBarba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "active")
     private Boolean active;
+    @ManyToOne
+    @JoinColumn(name = "barbershop_id")
+    private BarberShop barberShop;
 
     public Category() {
     }
@@ -52,6 +55,14 @@ public class Category {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public BarberShop getBarberShop() {
+        return barberShop;
+    }
+
+    public void setBarberShop(BarberShop barberShop) {
+        this.barberShop = barberShop;
     }
 
     @Override

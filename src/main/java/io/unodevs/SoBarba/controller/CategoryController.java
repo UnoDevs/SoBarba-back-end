@@ -1,6 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
 import io.unodevs.SoBarba.model.dto.CategoryDTO;
+import io.unodevs.SoBarba.model.dto.CreateCategoryDTO;
 import io.unodevs.SoBarba.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity<CategoryDTO> create(@RequestBody CreateCategoryDTO categoryDTO){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(categoryDTO.getId()).toUri();
         CategoryDTO response = categoryService.create(categoryDTO);

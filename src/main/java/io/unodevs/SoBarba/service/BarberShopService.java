@@ -1,12 +1,13 @@
 package io.unodevs.SoBarba.service;
 
+import io.unodevs.SoBarba.mapper.BarberShopMapper;
 import io.unodevs.SoBarba.model.BarberShop;
+import io.unodevs.SoBarba.model.dto.BarberShopDTO;
 import io.unodevs.SoBarba.repository.BarberShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
@@ -15,39 +16,36 @@ public class BarberShopService {
 
     @Autowired
     private BarberShopRepository barberShopRepository;
+    @Autowired
+    private BarberShopMapper barberShopMapper;
 
-    public List<BarberShop> findAll() {
-        return barberShopRepository.findAll();
+    public List<BarberShopDTO> findAll() {
+        return barberShopMapper.toBarberShopDTOList(barberShopRepository.findAll());
     }
 
-    public BarberShop findById(Long id) {
-        BarberShop barberShop = validateOptional(barberShopRepository.findById(id));
-        return barberShop;
+    public BarberShopDTO findById(Long id) {
+        return barberShopMapper.toBarberShopDTO(validateOptional(barberShopRepository.findById(id)));
     }
 
-    public BarberShop create(BarberShop barberShop) {
-        return barberShopRepository.save(barberShop);
+    public BarberShopDTO create(BarberShopDTO barberShop) {
+        BarberShop response = barberShopRepository.save(barberShopMapper.toBarberShop(barberShop));
+        return barberShopMapper.toBarberShopDTO(response);
     }
 
-    public BarberShop update(BarberShop barberShop, Long id) {
-        BarberShop barberShopUpdated = validateOptional(
-                barberShopRepository.findById(id).map(val -> {
-                    val.setName(barberShop.getName());
-                    val.setDescription(barberShop.getDescription());
-                    val.setCnpj(barberShop.getCnpj());
-                    val.setActive(barberShop.isActive());
-                    return val;
-                })
-        );
+    public BarberShopDTO updateById(BarberShopDTO barberShop, Long id) {
+        BarberShopDTO barberShopDataDTO = findById(id);
 
-        barberShopRepository.save(barberShopUpdated);
+        barberShopDataDTO.setName(barberShop.getName());
+        barberShopDataDTO.setCnpj(barberShop.getCnpj());
+        barberShopDataDTO.setDescription(barberShop.getDescription());
+        barberShopDataDTO.setActive(barberShop.getActive());
 
-        return barberShopUpdated;
+        barberShopRepository.save(barberShopMapper.toBarberShop(barberShopDataDTO));
+        return barberShopDataDTO;
     }
 
-    public BarberShop delete(Long id) {
-        BarberShop barberShopDeleted = validateOptional(barberShopRepository.findById(id));
-        barberShopRepository.delete(barberShopDeleted);
-        return barberShopDeleted;
+    public void delete(Long id) {
+        BarberShopDTO barberShopDeleted = findById(id);
+        barberShopRepository.deleteById(barberShopDeleted.getId());
     }
 }

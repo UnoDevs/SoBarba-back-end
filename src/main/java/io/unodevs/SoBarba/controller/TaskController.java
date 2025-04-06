@@ -1,6 +1,5 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.Task;
 import io.unodevs.SoBarba.model.dto.TaskDTO;
 import io.unodevs.SoBarba.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public ResponseEntity<TaskDTO> update(@RequestBody TaskDTO task, @PathVariable Long id) {
-        return new ResponseEntity<>(taskService.update(task, id), HttpStatus.OK);
+        return new ResponseEntity<>(taskService.updateById(task, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.Product;
+import io.unodevs.SoBarba.model.dto.ProductDTO;
 import io.unodevs.SoBarba.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,30 +20,31 @@ public class ProductController {
     private ProductService productService;
     
     @GetMapping
-    public ResponseEntity<List<Product>> findAll() {
+    public ResponseEntity<List<ProductDTO>> findAll() {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id) {
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
         return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody Product product) {
+    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO product) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(product.getId()).toUri();
-        Product response = productService.create(product);
+        ProductDTO response = productService.create(product);
         return ResponseEntity.created(uri).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
-        return new ResponseEntity<>(productService.update(product, id), HttpStatus.OK);
+    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO product, @PathVariable Long id) {
+        return new ResponseEntity<>(productService.updateById(product, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Product> delete(@PathVariable Long id) {
-        return new ResponseEntity<>(productService.delete(id), HttpStatus.OK);
+    public ResponseEntity<ProductDTO> delete(@PathVariable Long id) {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

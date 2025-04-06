@@ -10,6 +10,6 @@ import java.util.List;
 public interface TaskMapper {
     Task toTask(TaskDTO dto);
     TaskDTO toTaskDTO(Task entity);
-    List<Task> toTaskList(List<TaskDTO> dto);
+    List<Task> toTaskList(List<TaskDTO> dtos);
     List<TaskDTO> toTaskDTOList(List<Task> entities);
 }

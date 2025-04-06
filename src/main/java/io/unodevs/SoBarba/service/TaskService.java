@@ -32,7 +32,7 @@ public class TaskService {
         return taskMapper.toTaskDTO(responseData);
     }
 
-    public TaskDTO update(TaskDTO task, Long id) {
+    public TaskDTO updateById(TaskDTO task, Long id) {
         TaskDTO taskDTOData = findById(id);
 
         taskDTOData.setName(task.getName());

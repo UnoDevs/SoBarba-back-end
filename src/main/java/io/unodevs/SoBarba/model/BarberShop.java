@@ -20,8 +20,6 @@ public class BarberShop {
     private String cnpj;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "barberShop")
-    private List<Category> categories;
 
     public BarberShop() {
     }
@@ -81,23 +79,17 @@ public class BarberShop {
         this.active = active;
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 
     @Override
     public boolean equals(Object o) {
+
         if (o == null || getClass() != o.getClass()) return false;
         BarberShop that = (BarberShop) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(cnpj, that.cnpj) && Objects.equals(active, that.active) && Objects.equals(categories, that.categories);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(cnpj, that.cnpj) && Objects.equals(active, that.active);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, cnpj, active, categories);
+        return Objects.hash(id, name, description, cnpj, active);
     }
 }

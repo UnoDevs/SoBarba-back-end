@@ -2,6 +2,7 @@ package io.unodevs.SoBarba.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,22 +16,18 @@ public class Category {
     private String name;
     @Column(name = "active")
     private Boolean active;
-    @ManyToOne
-    @JoinColumn(name = "barbershop_id")
-    private BarberShop barberShop;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private List<Product> products;
 
     public Category() {
     }
 
-    public Category(String name, Boolean active) {
-        this.name = name;
-        this.active = active;
-    }
-
-    public Category(Long id, String name, Boolean active) {
+    public Category(Long id, String name, Boolean active, List<Product> products) {
         this.id = id;
         this.name = name;
         this.active = active;
+        this.products = products;
     }
 
     public Long getId() {
@@ -57,12 +54,20 @@ public class Category {
         this.active = active;
     }
 
-    public BarberShop getBarberShop() {
-        return barberShop;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setBarberShop(BarberShop barberShop) {
-        this.barberShop = barberShop;
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
     }
 
     @Override

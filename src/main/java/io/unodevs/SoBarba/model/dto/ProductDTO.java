@@ -1,34 +1,23 @@
-package io.unodevs.SoBarba.model;
+package io.unodevs.SoBarba.model.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-public class Product {
+public class ProductDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private static final long serialVersionUID = 1L;
+
     private Long id;
-
     private String name;
-
     private Double salePrice;
-
-    private Boolean active;
-
+    private Boolean active = true;
     private Boolean hasStock;
-
     private Double purchasePrice;
 
-    public Product() {
-
+    public ProductDTO() {
     }
 
-    public Product(String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
+    public ProductDTO(String name, Double salePrice, Boolean active, Boolean hasStock, Double purchasePrice) {
         this.name = name;
         this.salePrice = salePrice;
         this.active = active;
@@ -36,7 +25,7 @@ public class Product {
         this.purchasePrice = purchasePrice;
     }
 
-    public Product(Long id, String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
+    public ProductDTO(Long id, String name, Double salePrice, Boolean active, Boolean hasStock, Double purchasePrice) {
         this.id = id;
         this.name = name;
         this.salePrice = salePrice;
@@ -96,8 +85,8 @@ public class Product {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(salePrice, product.salePrice) && Objects.equals(active, product.active) && Objects.equals(hasStock, product.hasStock) && Objects.equals(purchasePrice, product.purchasePrice);
+        ProductDTO that = (ProductDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(salePrice, that.salePrice) && Objects.equals(active, that.active) && Objects.equals(hasStock, that.hasStock) && Objects.equals(purchasePrice, that.purchasePrice);
     }
 
     @Override

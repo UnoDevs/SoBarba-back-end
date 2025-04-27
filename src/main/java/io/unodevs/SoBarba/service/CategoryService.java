@@ -32,6 +32,10 @@ public class CategoryService {
         return categoryMapper.toCategoryDTO(validateOptional(categoryRepository.findById(id)));
     }
 
+    public CategoryDTO create(CategoryDTO dto){
+        Category entity = categoryRepository.save(categoryMapper.toCategory(dto));
+        return categoryMapper.toCategoryDTO(entity);
+    }
 
     public CategoryDTO updateById(Long id, CategoryDTO category){
         CategoryDTO categoryDataDTO = findById(id);

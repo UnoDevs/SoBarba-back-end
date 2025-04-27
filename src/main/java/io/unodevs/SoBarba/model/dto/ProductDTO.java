@@ -13,6 +13,7 @@ public class ProductDTO implements Serializable {
     private Boolean active = true;
     private Boolean hasStock;
     private Double purchasePrice;
+    private Long categoryId;
 
     public ProductDTO() {
     }
@@ -80,6 +81,14 @@ public class ProductDTO implements Serializable {
 
     public void setPurchasePrice(Double purchasePrice) {
         this.purchasePrice = purchasePrice;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override

@@ -24,11 +24,11 @@ public class ProductService {
     private ProductMapper productMapper;
 
     public List<ProductDTO> findAll() {
-        return productMapper.toProductDTOList(productRepository.findAll());
+        return productMapper.toProductDTOList(productRepository.findAllWithCategory());
     }
 
     public ProductDTO findById(Long id) {
-        return productMapper.toProductDTO(validateOptional(productRepository.findById(id)));
+        return productMapper.toProductDTO(validateOptional(productRepository.findByIdWithCategory(id)));
     }
 
     public ProductDTO create(ProductDTO dto) {

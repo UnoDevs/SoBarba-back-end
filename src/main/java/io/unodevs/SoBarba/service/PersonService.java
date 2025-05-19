@@ -37,7 +37,6 @@ public class PersonService {
         PersonDTO personDataDTO = findById(id);
 
         personDataDTO.setName(person.getName());
-        personDataDTO.setBirthDate(person.getBirthDate());
         personDataDTO.setDescription(person.getDescription());
         personDataDTO.setEmail(person.getEmail());
         personDataDTO.setPhone(person.getPhone());

@@ -64,6 +64,7 @@ public class Category {
 
     public void addProduct(Product product){
         this.products.add(product);
+        product.setCategory(this);
     }
 
     public void removeProduct(Product product){

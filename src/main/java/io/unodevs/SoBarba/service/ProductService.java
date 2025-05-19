@@ -46,27 +46,24 @@ public class ProductService {
     }
 
     public ProductDTO updateById(ProductDTO requestDto, Long id) {
-        ProductDTO productDataDTO = findById(id);
+        Product product = validateOptional(productRepository.findByIdWithCategory(id));
 
-        productDataDTO.setName(requestDto.getName());
-        productDataDTO.setHasStock(requestDto.getHasStock());
-        productDataDTO.setSalePrice(requestDto.getSalePrice());
-        productDataDTO.setPurchasePrice(requestDto.getPurchasePrice());
-        productDataDTO.setActive(requestDto.getActive());
-
-        Product product = productMapper.toProduct(productDataDTO);
+        product.setName(requestDto.getName());
+        product.setHasStock(requestDto.getHasStock());
+        product.setSalePrice(requestDto.getSalePrice());
+        product.setPurchasePrice(requestDto.getPurchasePrice());
+        product.setActive(requestDto.getActive());
 
         if(requestDto.getCategoryId() != null){
             Category category = validateOptional(categoryRepository.findById(requestDto.getCategoryId()));
             category.addProduct(product);
-            productDataDTO.setCategoryId(requestDto.getCategoryId());
             categoryRepository.save(category);
-        } else {
-            productDataDTO.setCategoryId(validateOptional(productRepository.findByIdWithCategory(id)).getCategory().getId());
         }
-
         productRepository.save(product);
-        return productDataDTO;
+
+        ProductDTO responseDTO = productMapper.toProductDTO(product);
+        responseDTO.setCategoryId(product.getCategory().getId());
+        return responseDTO;
     }
 
     public void delete(Long id) {

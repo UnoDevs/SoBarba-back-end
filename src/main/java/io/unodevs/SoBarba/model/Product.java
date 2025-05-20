@@ -29,23 +29,6 @@ public class Product {
 
     }
 
-    public Product(String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
-    }
-
-    public Product(Long id, String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
-        this.id = id;
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
-    }
-
     public Long getId() {
         return id;
     }
@@ -101,16 +84,5 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(salePrice, product.salePrice) && Objects.equals(active, product.active) && Objects.equals(hasStock, product.hasStock) && Objects.equals(purchasePrice, product.purchasePrice);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, salePrice, active, hasStock, purchasePrice);
-    }
+    
 }

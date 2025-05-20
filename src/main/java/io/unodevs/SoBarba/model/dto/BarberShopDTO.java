@@ -19,14 +19,6 @@ public class BarberShopDTO implements Serializable {
     public BarberShopDTO() {
     }
 
-    public BarberShopDTO(Long id, String name, String description, String cnpj, Boolean active, List<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.cnpj = cnpj;
-        this.active = active;
-    }
-
     public Long getId() {
         return id;
     }
@@ -65,19 +57,5 @@ public class BarberShopDTO implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-
-        if (o == null || getClass() != o.getClass()) return false;
-        BarberShopDTO that = (BarberShopDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(cnpj, that.cnpj) && Objects.equals(active, that.active);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, cnpj, active);
     }
 }

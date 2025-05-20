@@ -1,11 +1,13 @@
 package io.unodevs.SoBarba.model;
 
+import io.unodevs.SoBarba.model.enumerator.PersonType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,31 +18,14 @@ public class Person {
     private Long id;
     private String name;
     private String description;
-    private LocalDate birthDate;
     private String email;
     private String phone;
     private Boolean active;
+    private String document;
+
+    private List<PersonType> personTypes;
 
     public Person() {
-    }
-
-    public Person(String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
-        this.name = name;
-        this.description = description;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.phone = phone;
-        this.active = active;
-    }
-
-    public Person(Long id, String name, String description, LocalDate birthDate, String email, String phone, Boolean active) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.phone = phone;
-        this.active = active;
     }
 
     public Long getId() {
@@ -67,14 +52,6 @@ public class Person {
         this.description = description;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -99,16 +76,19 @@ public class Person {
         this.active = active;
     }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(name, person.name) && Objects.equals(description, person.description) && Objects.equals(birthDate, person.birthDate) && Objects.equals(email, person.email) && Objects.equals(phone, person.phone) && Objects.equals(active, person.active);
+    public String getDocument() {
+        return document;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, birthDate, email, phone, active);
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public List<PersonType> getPersonTypes() {
+        return personTypes;
+    }
+
+    public void setPersonTypes(List<PersonType> personTypes) {
+        this.personTypes = personTypes;
     }
 }

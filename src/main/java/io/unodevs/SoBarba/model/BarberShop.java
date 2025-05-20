@@ -19,7 +19,7 @@ public class BarberShop {
 
     public BarberShop() {
     }
-    
+
     public Long getId() {
         return id;
     }

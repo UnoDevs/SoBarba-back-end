@@ -1,7 +1,10 @@
 package io.unodevs.SoBarba.model.dto;
 
+import io.unodevs.SoBarba.model.enumerator.PersonType;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class PersonDTO implements Serializable {
@@ -14,6 +17,8 @@ public class PersonDTO implements Serializable {
     private String email;
     private String phone;
     private Boolean active = true;
+    private String document;
+    private List<PersonType> personTypes;
 
     public PersonDTO() {
     }
@@ -66,4 +71,19 @@ public class PersonDTO implements Serializable {
         this.active = active;
     }
 
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public List<PersonType> getPersonTypes() {
+        return personTypes;
+    }
+
+    public void setPersonTypes(List<PersonType> personTypes) {
+        this.personTypes = personTypes;
+    }
 }

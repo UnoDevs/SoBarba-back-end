@@ -46,18 +46,24 @@ public class TaskService {
         return response;
     }
 
-    public TaskDTO updateById(TaskDTO task, Long id) {
-        TaskDTO taskDTOData = findById(id);
+    public TaskDTO updateById(TaskDTO dto, Long id) {
+        Task task = validateOptional(taskRepository.findByIdWithCategory(id));
 
-        taskDTOData.setName(task.getName());
-        taskDTOData.setPrice(task.getPrice());
-        taskDTOData.setTimeConclusion(task.getTimeConclusion());
-        taskDTOData.setActive(task.getActive());
-        taskDTOData.setDescription(task.getDescription());
+        task.setName(dto.getName());
+        task.setPrice(dto.getPrice());
+        task.setTimeConclusion(dto.getTimeConclusion());
+        task.setActive(dto.getActive());
+        task.setDescription(dto.getDescription());
 
+        if(dto.getCategoryId() != null){
+            Category category = validateOptional(categoryRepository.findById(dto.getCategoryId()));
+            category.addTask(task);
+            categoryRepository.save(category);
+        }
+        taskRepository.save(task);
 
-        taskRepository.save(taskMapper.toTask(taskDTOData));
-        return taskDTOData;
+        return taskMapper.toTaskDTO(task);
+
     }
 
     public void delete(Long id) {

@@ -20,6 +20,10 @@ public class Category {
     @JoinColumn(name = "category_id")
     private List<Product> products;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private List<Task> tasks;
+
     public Category() {
     }
 
@@ -71,15 +75,20 @@ public class Category {
         this.products.remove(product);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(active, category.active);
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, active);
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(Task task){
+        this.tasks.add(task);
+        task.setCategory(this);
+    }
+
+    public void removeTask(Task task){
+        this.tasks.remove(task);
     }
 }

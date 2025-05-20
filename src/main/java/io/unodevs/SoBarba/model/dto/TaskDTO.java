@@ -16,25 +16,9 @@ public class TaskDTO implements Serializable {
     private int timeConclusion;
     private String description;
     private Boolean active = true;
+    private Long categoryId;
 
     public TaskDTO() {
-    }
-
-    public TaskDTO(String name, Double price, int timeConclusion, String description, boolean active) {
-        this.name = name;
-        this.price = price;
-        this.timeConclusion = timeConclusion;
-        this.description = description;
-        this.active = active;
-    }
-
-    public TaskDTO(Long id, String name, double price, int timeConclusion, String description, boolean active) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.timeConclusion = timeConclusion;
-        this.description = description;
-        this.active = active;
     }
 
     public Long getId() {
@@ -85,15 +69,11 @@ public class TaskDTO implements Serializable {
         this.active = active;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        TaskDTO taskDTO = (TaskDTO) o;
-        return Double.compare(price, taskDTO.price) == 0 && timeConclusion == taskDTO.timeConclusion && active == taskDTO.active && Objects.equals(id, taskDTO.id) && Objects.equals(name, taskDTO.name) && Objects.equals(description, taskDTO.description);
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, timeConclusion, description, active);
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

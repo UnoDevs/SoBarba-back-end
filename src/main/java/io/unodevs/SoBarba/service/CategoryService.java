@@ -21,8 +21,6 @@ public class CategoryService {
     private BarberShopService barberShopService;
     @Autowired
     private CategoryMapper categoryMapper;
-    @Autowired
-    private BarberShopMapper barberShopMapper;
 
     public List<CategoryDTO> findAll(){
         return categoryMapper.toCategoryDTOList(categoryRepository.findAll());

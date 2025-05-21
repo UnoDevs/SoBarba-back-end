@@ -1,6 +1,8 @@
 package io.unodevs.SoBarba.model.dto;
 
 import io.unodevs.SoBarba.model.enumerator.JobTitleType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ public class EmployeeDataDTO implements Serializable {
     private LocalDate terminationDate;
     private Double salary;
     private Double commission;
+    @Enumerated(EnumType.STRING)
     private JobTitleType jobTitle;
 
     public EmployeeDataDTO() {

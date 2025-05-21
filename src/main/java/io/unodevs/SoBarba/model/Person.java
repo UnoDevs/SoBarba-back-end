@@ -26,6 +26,10 @@ public class Person {
     @Column(name = "person_type")
     private List<PersonType> personTypes;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_data_id", referencedColumnName = "id")
+    private EmployeeData employeeData;
+
     public Person() {
     }
 
@@ -91,5 +95,13 @@ public class Person {
 
     public void setPersonTypes(List<PersonType> personTypes) {
         this.personTypes = personTypes;
+    }
+
+    public EmployeeData getEmployeeData() {
+        return employeeData;
+    }
+
+    public void setEmployeeData(EmployeeData employeeData) {
+        this.employeeData = employeeData;
     }
 }

@@ -1,10 +1,7 @@
 package io.unodevs.SoBarba.model;
 
 import io.unodevs.SoBarba.model.enumerator.JobTitleType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -19,6 +16,8 @@ public class EmployeeData {
     private Double salary;
     private Double commission;
     private JobTitleType jobTitle;
+    @OneToOne(mappedBy = "employeeData")
+    private Person person;
 
     public EmployeeData() {
     }
@@ -69,5 +68,13 @@ public class EmployeeData {
 
     public void setJobTitle(JobTitleType jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

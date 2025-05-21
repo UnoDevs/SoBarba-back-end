@@ -19,6 +19,7 @@ public class PersonDTO implements Serializable {
     private Boolean active = true;
     private String document;
     private List<PersonType> personTypes;
+    private EmployeeDataDTO employeeData;
 
     public PersonDTO() {
     }
@@ -85,5 +86,13 @@ public class PersonDTO implements Serializable {
 
     public void setPersonTypes(List<PersonType> personTypes) {
         this.personTypes = personTypes;
+    }
+
+    public EmployeeDataDTO getEmployeeData() {
+        return employeeData;
+    }
+
+    public void setEmployeeData(EmployeeDataDTO employeeData) {
+        this.employeeData = employeeData;
     }
 }

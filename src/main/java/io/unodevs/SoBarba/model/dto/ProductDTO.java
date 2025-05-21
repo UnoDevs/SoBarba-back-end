@@ -13,25 +13,9 @@ public class ProductDTO implements Serializable {
     private Boolean active = true;
     private Boolean hasStock;
     private Double purchasePrice;
+    private Long categoryId;
 
     public ProductDTO() {
-    }
-
-    public ProductDTO(String name, Double salePrice, Boolean active, Boolean hasStock, Double purchasePrice) {
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
-    }
-
-    public ProductDTO(Long id, String name, Double salePrice, Boolean active, Boolean hasStock, Double purchasePrice) {
-        this.id = id;
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
     }
 
     public Long getId() {
@@ -82,15 +66,11 @@ public class ProductDTO implements Serializable {
         this.purchasePrice = purchasePrice;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductDTO that = (ProductDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(salePrice, that.salePrice) && Objects.equals(active, that.active) && Objects.equals(hasStock, that.hasStock) && Objects.equals(purchasePrice, that.purchasePrice);
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, salePrice, active, hasStock, purchasePrice);
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

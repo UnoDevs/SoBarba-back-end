@@ -5,7 +5,9 @@ import io.unodevs.SoBarba.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,6 +26,14 @@ public class CategoryController {
     public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
         CategoryDTO categoryReturn = categoryService.findById(id);
         return ResponseEntity.ok(categoryReturn);
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO dto){
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId())
+                .toUri();
+        CategoryDTO response = categoryService.create(dto);
+        return ResponseEntity.created(uri).body(response);
     }
 
     @PutMapping("/{id}")

@@ -1,9 +1,6 @@
 package io.unodevs.SoBarba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -24,25 +21,12 @@ public class Product {
 
     private Double purchasePrice;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Category category;
+
     public Product() {
 
-    }
-
-    public Product(String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
-    }
-
-    public Product(Long id, String name, double salePrice, boolean active, boolean hasStock, double purchasePrice) {
-        this.id = id;
-        this.name = name;
-        this.salePrice = salePrice;
-        this.active = active;
-        this.hasStock = hasStock;
-        this.purchasePrice = purchasePrice;
     }
 
     public Long getId() {
@@ -93,15 +77,12 @@ public class Product {
         this.purchasePrice = purchasePrice;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(name, product.name) && Objects.equals(salePrice, product.salePrice) && Objects.equals(active, product.active) && Objects.equals(hasStock, product.hasStock) && Objects.equals(purchasePrice, product.purchasePrice);
+    public Category getCategory() {
+        return category;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, salePrice, active, hasStock, purchasePrice);
+    public void setCategory(Category category) {
+        this.category = category;
     }
+
 }

@@ -1,9 +1,6 @@
 package io.unodevs.SoBarba.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Task {
@@ -22,18 +19,12 @@ public class Task {
 
     private Boolean active;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Category category;
+
     public Task() {
     }
-
-    public Task(Long id, String name, double price, int timeConclusion, String description, boolean active) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.timeConclusion = timeConclusion;
-        this.description = description;
-        this.active = active;
-    }
-
 
     public Long getId() {
         return id;
@@ -81,5 +72,13 @@ public class Task {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

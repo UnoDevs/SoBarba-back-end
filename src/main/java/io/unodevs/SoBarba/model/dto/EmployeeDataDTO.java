@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class EmployeeDataDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    private Long id;
     private LocalDate hireDate;
     private LocalDate terminationDate;
     private Double salary;
@@ -17,6 +18,14 @@ public class EmployeeDataDTO implements Serializable {
     private JobTitleType jobTitle;
 
     public EmployeeDataDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getHireDate() {

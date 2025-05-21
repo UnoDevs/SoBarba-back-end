@@ -26,7 +26,7 @@ public class Person {
     @Column(name = "person_type")
     private List<PersonType> personTypes;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "employee_data_id", referencedColumnName = "id")
     private EmployeeData employeeData;
 

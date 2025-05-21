@@ -41,6 +41,7 @@ public class PersonService {
         personDataDTO.setEmail(person.getEmail());
         personDataDTO.setPhone(person.getPhone());
         personDataDTO.setActive(person.getActive());
+        personDataDTO.setPersonTypes(person.getPersonTypes());
 
         personRepository.save(personMapper.toPerson(personDataDTO));
         return personDataDTO;

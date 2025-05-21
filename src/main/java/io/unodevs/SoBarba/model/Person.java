@@ -1,10 +1,7 @@
 package io.unodevs.SoBarba.model;
 
 import io.unodevs.SoBarba.model.enumerator.PersonType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +20,10 @@ public class Person {
     private Boolean active;
     private String document;
 
+    @ElementCollection(targetClass = PersonType.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "PERSONTYPES_PERSON_RELATION", joinColumns = @JoinColumn(name = "person_id"))
+    @Column(name = "person_type")
     private List<PersonType> personTypes;
 
     public Person() {

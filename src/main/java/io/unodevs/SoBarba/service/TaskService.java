@@ -3,7 +3,7 @@ package io.unodevs.SoBarba.service;
 import io.unodevs.SoBarba.mapper.TaskMapper;
 import io.unodevs.SoBarba.model.Category;
 import io.unodevs.SoBarba.model.Task;
-import io.unodevs.SoBarba.model.dto.TaskDTO;
+import io.unodevs.SoBarba.dto.TaskDTO;
 import io.unodevs.SoBarba.repository.CategoryRepository;
 import io.unodevs.SoBarba.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;

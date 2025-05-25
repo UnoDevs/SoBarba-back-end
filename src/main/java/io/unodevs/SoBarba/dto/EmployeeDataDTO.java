@@ -1,4 +1,4 @@
-package io.unodevs.SoBarba.model.dto;
+package io.unodevs.SoBarba.dto;
 
 import io.unodevs.SoBarba.model.enumerator.JobTitleType;
 import jakarta.persistence.EnumType;

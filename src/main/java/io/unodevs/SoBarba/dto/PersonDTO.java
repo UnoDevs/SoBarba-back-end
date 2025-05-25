@@ -1,11 +1,9 @@
-package io.unodevs.SoBarba.model.dto;
+package io.unodevs.SoBarba.dto;
 
 import io.unodevs.SoBarba.model.enumerator.PersonType;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 public class PersonDTO implements Serializable {
 

@@ -1,24 +1,21 @@
-package io.unodevs.SoBarba.model.dto;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
+package io.unodevs.SoBarba.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-
-public class TaskDTO implements Serializable {
+public class ProductDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
-    private double price;
-    private int timeConclusion;
-    private String description;
+    private Double salePrice;
     private Boolean active = true;
+    private Boolean hasStock;
+    private Double purchasePrice;
     private Long categoryId;
 
-    public TaskDTO() {
+    public ProductDTO() {
     }
 
     public Long getId() {
@@ -29,14 +26,6 @@ public class TaskDTO implements Serializable {
         this.id = id;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getName() {
         return name;
     }
@@ -45,20 +34,12 @@ public class TaskDTO implements Serializable {
         this.name = name;
     }
 
-    public int getTimeConclusion() {
-        return timeConclusion;
+    public Double getSalePrice() {
+        return salePrice;
     }
 
-    public void setTimeConclusion(int timeConclusion) {
-        this.timeConclusion = timeConclusion;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSalePrice(Double salePrice) {
+        this.salePrice = salePrice;
     }
 
     public Boolean getActive() {
@@ -67,6 +48,22 @@ public class TaskDTO implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Boolean getHasStock() {
+        return hasStock;
+    }
+
+    public void setHasStock(Boolean hasStock) {
+        this.hasStock = hasStock;
+    }
+
+    public Double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(Double purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
     public Long getCategoryId() {

@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.mapper;
 
 import io.unodevs.SoBarba.model.Product;
-import io.unodevs.SoBarba.model.dto.ProductDTO;
+import io.unodevs.SoBarba.dto.ProductDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

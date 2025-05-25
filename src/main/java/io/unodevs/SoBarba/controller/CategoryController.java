@@ -1,6 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.dto.CategoryDTO;
+import io.unodevs.SoBarba.dto.CategoryDTO;
 import io.unodevs.SoBarba.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

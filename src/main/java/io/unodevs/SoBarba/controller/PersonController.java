@@ -1,7 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.Person;
-import io.unodevs.SoBarba.model.dto.PersonDTO;
+import io.unodevs.SoBarba.dto.PersonDTO;
 import io.unodevs.SoBarba.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

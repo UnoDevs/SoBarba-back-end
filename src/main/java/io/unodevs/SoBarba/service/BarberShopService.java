@@ -2,7 +2,7 @@ package io.unodevs.SoBarba.service;
 
 import io.unodevs.SoBarba.mapper.BarberShopMapper;
 import io.unodevs.SoBarba.model.BarberShop;
-import io.unodevs.SoBarba.model.dto.BarberShopDTO;
+import io.unodevs.SoBarba.dto.BarberShopDTO;
 import io.unodevs.SoBarba.repository.BarberShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

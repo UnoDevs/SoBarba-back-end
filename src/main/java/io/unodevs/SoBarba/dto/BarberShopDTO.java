@@ -1,21 +1,23 @@
-package io.unodevs.SoBarba.model.dto;
+package io.unodevs.SoBarba.dto;
 
-import io.unodevs.SoBarba.model.BarberShop;
+import io.unodevs.SoBarba.model.Category;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-public class CategoryDTO implements Serializable {
+public class BarberShopDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
+    private String description;
+    private String cnpj;
     private Boolean active;
 
-    public CategoryDTO() {
+    public BarberShopDTO() {
     }
-
 
     public Long getId() {
         return id;
@@ -31,6 +33,22 @@ public class CategoryDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public Boolean getActive() {

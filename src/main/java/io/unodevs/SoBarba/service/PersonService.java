@@ -4,8 +4,8 @@ import io.unodevs.SoBarba.exception.InvalidEntityResponseException;
 import io.unodevs.SoBarba.mapper.PersonMapper;
 import io.unodevs.SoBarba.model.EmployeeData;
 import io.unodevs.SoBarba.model.Person;
-import io.unodevs.SoBarba.model.dto.EmployeeDataDTO;
-import io.unodevs.SoBarba.model.dto.PersonDTO;
+import io.unodevs.SoBarba.dto.EmployeeDataDTO;
+import io.unodevs.SoBarba.dto.PersonDTO;
 import io.unodevs.SoBarba.model.enumerator.PersonType;
 import io.unodevs.SoBarba.repository.EmployeeDataRepository;
 import io.unodevs.SoBarba.repository.PersonRepository;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 

@@ -1,7 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.BarberShop;
-import io.unodevs.SoBarba.model.dto.BarberShopDTO;
+import io.unodevs.SoBarba.dto.BarberShopDTO;
 import io.unodevs.SoBarba.service.BarberShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

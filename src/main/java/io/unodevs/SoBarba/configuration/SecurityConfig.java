@@ -45,6 +45,7 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         JwtTokenFilter filter = new JwtTokenFilter(tokenProvider);
 
@@ -60,15 +61,20 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         "/auth/singin",
                                         "/auth/refresh/**",
-                                        "auth/createUser",
+                                        "/auth/createUser",
+                                        "/h2-console/**",
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**"
                                 ).permitAll()
                                 .requestMatchers(
+                                        "/users"
+                                )
+                                .denyAll()
+                                .requestMatchers(
                                         "/**"
                                 )
                                 .authenticated()
-                                .requestMatchers(" /users").denyAll()
+
                 )
                 .cors(cors -> {})
                 .build();

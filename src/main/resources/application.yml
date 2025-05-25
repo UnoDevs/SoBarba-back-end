@@ -10,6 +10,17 @@ spring:
     user:
       name: user
       password: unodevstest
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/sobarba
+    username: postgres
+    password: 12345678
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: prd
 server:
   port: 8081
 port: 5173

@@ -3,6 +3,7 @@ package io.unodevs.SoBarba.exception.handler;
 import io.unodevs.SoBarba.exception.EntityNotFoundException;
 import io.unodevs.SoBarba.exception.ExceptionResponse;
 import io.unodevs.SoBarba.exception.InvalidEntityResponseException;
+import io.unodevs.SoBarba.exception.InvalidJwtAuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -38,6 +39,14 @@ public class CustomEntityExceptionHandler {
                 new Date(), ex.getMessage(), request.getDescription(false)
         );
         return new ResponseEntity<>(responseEx, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationException(Exception ex, WebRequest request){
+        ExceptionResponse responseEx = new ExceptionResponse(
+                new Date(), ex.getMessage(), request.getDescription(false)
+        );
+        return new ResponseEntity<>(responseEx, HttpStatus.FORBIDDEN);
     }
 
 }

@@ -17,6 +17,7 @@
 		<java.version>23</java.version>
 		<springdoc.version>2.7.0</springdoc.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<java-jwt.version>4.4.0</java-jwt.version>
 		<maven.compiler.source>23</maven.compiler.source>
 		<maven.compiler.target>23</maven.compiler.target>
 	</properties>
@@ -28,6 +29,15 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${java-jwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>

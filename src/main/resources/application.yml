@@ -24,3 +24,6 @@ spring:
 server:
   port: 8081
 port: 5173
+logging:
+  level:
+    root: WARN

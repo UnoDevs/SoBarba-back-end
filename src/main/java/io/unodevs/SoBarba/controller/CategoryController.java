@@ -1,5 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.unodevs.SoBarba.dto.CategoryDTO;
 import io.unodevs.SoBarba.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-
+@Tag(name = "Controlador de Categoria")
 @RestController
 @RequestMapping("/category")
 public class CategoryController {

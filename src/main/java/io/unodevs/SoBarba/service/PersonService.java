@@ -39,6 +39,8 @@ public class PersonService {
 
         if(!entity.getPersonTypes().contains(PersonType.EMPLOYEE)){
             entity.setEmployeeData(null);
+        } else if(entity.getEmployeeData() == null) {
+            throw new InvalidEntityResponseException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
         }
 
         personRepository.save(entity);

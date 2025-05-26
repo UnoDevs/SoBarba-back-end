@@ -35,4 +35,14 @@ public class AuthService {
 
         return tokenProvider.createAccessToken(user.getUsername(),user.getRoles());
     }
+
+    public TokenDTO refreshSingIn(String username, String refreshToken){
+        User user = userRepository.findByUsername(username);
+
+        if (user != null){
+            return tokenProvider.refreshAccessToken(refreshToken);
+        } else {
+            throw new UsernameNotFoundException("Username " + username + " not found");
+        }
+    }
 }

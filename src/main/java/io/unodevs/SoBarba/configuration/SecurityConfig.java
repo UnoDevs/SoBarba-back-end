@@ -61,19 +61,16 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         "/auth/singin",
                                         "/auth/refresh/**",
-                                        "/auth/createUser",
-                                        "/h2-console/**",
-                                        "/swagger-ui/**",
-                                        "/v3/api-docs/**"
+                                        "/auth/createUser"
                                 ).permitAll()
-                                .requestMatchers(
-                                        "/users"
-                                )
-                                .denyAll()
                                 .requestMatchers(
                                         "/**"
                                 )
                                 .authenticated()
+                                .requestMatchers(
+                                        "/users"
+                                )
+                                .denyAll()
 
                 )
                 .cors(cors -> {})

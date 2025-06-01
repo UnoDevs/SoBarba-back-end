@@ -30,6 +30,14 @@ public class Person {
     @JoinColumn(name = "employee_data_id", referencedColumnName = "id")
     private EmployeeData employeeData;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private List<Scheduling> clientSchedulings;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "barber_id")
+    private List<Scheduling> barberSchedulings;
+
     public Person() {
     }
 
@@ -103,5 +111,39 @@ public class Person {
 
     public void setEmployeeData(EmployeeData employeeData) {
         this.employeeData = employeeData;
+    }
+
+    public List<Scheduling> getClientSchedulings() {
+        return clientSchedulings;
+    }
+
+    public void setClientSchedulings(List<Scheduling> clientSchedulings) {
+        this.clientSchedulings = clientSchedulings;
+    }
+
+    public void addClientSchedulings(Scheduling scheduling){
+        this.clientSchedulings.add(scheduling);
+        scheduling.setClient(this);
+    }
+
+    public void removeClientSchedulings(Scheduling scheduling){
+        this.clientSchedulings.remove(scheduling);
+    }
+
+    public List<Scheduling> getBarberSchedulings() {
+        return barberSchedulings;
+    }
+
+    public void setBarberSchedulings(List<Scheduling> barberSchedulings) {
+        this.barberSchedulings = barberSchedulings;
+    }
+
+    public void addBarberSchedulings(Scheduling scheduling){
+        this.barberSchedulings.add(scheduling);
+        scheduling.setClient(this);
+    }
+
+    public void removeBarberSchedulings(Scheduling scheduling){
+        this.barberSchedulings.remove(scheduling);
     }
 }

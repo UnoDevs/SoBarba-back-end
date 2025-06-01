@@ -25,9 +25,7 @@ public class Product {
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
-    public Product() {
-
-    }
+    public Product() {}
 
     public Long getId() {
         return id;

@@ -1,5 +1,6 @@
 package io.unodevs.SoBarba.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.unodevs.SoBarba.dto.SchedulingDTO;
 import io.unodevs.SoBarba.service.SchedulingService;
@@ -29,6 +30,7 @@ public class SchedulingController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(description = "Cadastro de Agendamento, possui validações e os segundos não são obrigatórios de envio")
     @PostMapping
     public ResponseEntity<SchedulingDTO> create(@RequestBody SchedulingDTO dto){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId())

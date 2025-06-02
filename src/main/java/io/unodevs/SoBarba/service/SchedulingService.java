@@ -11,6 +11,7 @@ import io.unodevs.SoBarba.repository.SchedulingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
@@ -36,15 +37,16 @@ public class SchedulingService {
     public SchedulingDTO create(SchedulingDTO dto){
         Scheduling scheduling = schedulingMapper.toScheduling(dto);
 
+        validateDate(dto.getStartDate(),dto.getEndDate());
+
         Person client = validateOptional(personRepository.findById(dto.getClientId()));
         validateType(client,PersonType.CUSTOMER);
         client.addClientSchedulings(scheduling);
         Person barber = validateOptional(personRepository.findById(dto.getBarberId()));
         validateType(barber,PersonType.EMPLOYEE);
-        client.addBarberSchedulings(scheduling);
+        barber.addBarberSchedulings(scheduling);
 
-        personRepository.save(client);
-        personRepository.save(barber);
+
         schedulingRepository.save(scheduling);
 
         SchedulingDTO response = schedulingMapper.toSchedulingDTO(scheduling);
@@ -56,6 +58,8 @@ public class SchedulingService {
 
     public SchedulingDTO updateById(Long id,SchedulingDTO dto){
         Scheduling scheduling = validateOptional(schedulingRepository.findByIdWithPersons(id));
+
+        validateDate(dto.getStartDate(),dto.getEndDate());
 
         scheduling.setEndDate(dto.getEndDate());
         scheduling.setStartDate(dto.getStartDate());
@@ -84,5 +88,10 @@ public class SchedulingService {
             throw new InvalidEntityRequestException("Pessoa "+ person.getName() +" informada não está vinculada como "+type+"!");
         }
         return true;
+    }
+
+    private boolean validateDate(LocalDateTime start, LocalDateTime end){
+        if(start.isBefore(end)){return true;}
+        throw new InvalidEntityRequestException("Data de Ínicio maior que a Data de Fim");
     }
 }

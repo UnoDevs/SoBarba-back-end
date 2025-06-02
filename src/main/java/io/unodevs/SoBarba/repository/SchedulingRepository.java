@@ -15,6 +15,6 @@ public interface SchedulingRepository extends JpaRepository<Scheduling,Long> {
     @Query("SELECT s FROM Scheduling s JOIN FETCH s.client JOIN FETCH s.barber WHERE s.id = :id")
     Optional<Scheduling> findByIdWithPersons(@Param("id") Long id);
 
-    @Query("SELECT s FROM Scheduling s JOIN FETCH t.client JOIN FETCH s.barber")
+    @Query("SELECT s FROM Scheduling s JOIN FETCH s.client JOIN FETCH s.barber")
     List<Scheduling> findAllWithPersons();
 }

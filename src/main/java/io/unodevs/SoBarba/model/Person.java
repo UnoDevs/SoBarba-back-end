@@ -30,11 +30,11 @@ public class Person {
     @JoinColumn(name = "employee_data_id", referencedColumnName = "id")
     private EmployeeData employeeData;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "client_id")
     private List<Scheduling> clientSchedulings;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "barber_id")
     private List<Scheduling> barberSchedulings;
 
@@ -140,7 +140,7 @@ public class Person {
 
     public void addBarberSchedulings(Scheduling scheduling){
         this.barberSchedulings.add(scheduling);
-        scheduling.setClient(this);
+        scheduling.setBarber(this);
     }
 
     public void removeBarberSchedulings(Scheduling scheduling){

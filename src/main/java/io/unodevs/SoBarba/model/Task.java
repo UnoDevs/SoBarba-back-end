@@ -92,6 +92,13 @@ public class Task {
         return taskRecords;
     }
 
+    public void addTaskRecords(TaskRecord taskRecord){
+        this.taskRecords.add(taskRecord);
+        taskRecord.setTask(this);
+    }
+
+    public void removeTaskRecords(TaskRecord taskRecord){this.taskRecords.remove(taskRecord);}
+
     public void setTaskRecords(List<TaskRecord> taskRecords) {
         this.taskRecords = taskRecords;
     }

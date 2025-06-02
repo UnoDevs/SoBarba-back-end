@@ -92,6 +92,13 @@ public class Product {
         return productRecords;
     }
 
+    public void addProductRecords(ProductRecord productRecord){
+        this.productRecords.add(productRecord);
+        productRecord.setProduct(this);
+    }
+
+    public void removeTaskRecords(ProductRecord productRecord){this.productRecords.remove(productRecord);}
+
     public void setProductRecords(List<ProductRecord> productRecords) {
         this.productRecords = productRecords;
     }

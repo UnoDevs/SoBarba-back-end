@@ -102,6 +102,12 @@ public class FinancialRecord {
         this.taskRecords = taskRecords;
     }
 
+    public void addTaskRecords(TaskRecord taskRecord){
+        this.taskRecords.add(taskRecord);
+        taskRecord.setFinancialRecord(this);
+    }
+    public void removeTaskRecords(TaskRecord taskRecord){this.taskRecords.remove(taskRecord);}
+
     public List<ProductRecord> getProductRecords() {
         return productRecords;
     }
@@ -109,4 +115,10 @@ public class FinancialRecord {
     public void setProductRecords(List<ProductRecord> productRecords) {
         this.productRecords = productRecords;
     }
+
+    public void addProductRecords(ProductRecord productRecord){
+        this.productRecords.add(productRecord);
+        productRecord.setFinancialRecord(this);
+    }
+    public void removeProductRecords(ProductRecord productRecord){this.productRecords.remove(productRecord);}
 }

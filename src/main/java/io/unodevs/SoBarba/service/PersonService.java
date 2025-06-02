@@ -1,6 +1,6 @@
 package io.unodevs.SoBarba.service;
 
-import io.unodevs.SoBarba.exception.InvalidEntityResponseException;
+import io.unodevs.SoBarba.exception.InvalidEntityRequestException;
 import io.unodevs.SoBarba.mapper.PersonMapper;
 import io.unodevs.SoBarba.model.EmployeeData;
 import io.unodevs.SoBarba.model.Person;
@@ -40,7 +40,7 @@ public class PersonService {
         if(!entity.getPersonTypes().contains(PersonType.EMPLOYEE)){
             entity.setEmployeeData(null);
         } else if(entity.getEmployeeData() == null) {
-            throw new InvalidEntityResponseException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
+            throw new InvalidEntityRequestException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
         }
 
         personRepository.save(entity);
@@ -53,7 +53,7 @@ public class PersonService {
         boolean isEmployee = dto.getPersonTypes().contains(PersonType.EMPLOYEE);
 
         if(isEmployee && dto.getEmployeeData() == null){
-            throw new InvalidEntityResponseException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
+            throw new InvalidEntityRequestException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
         }
 
         entity.setName(dto.getName());

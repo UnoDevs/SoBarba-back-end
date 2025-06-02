@@ -10,8 +10,8 @@ public class SchedulingDTO implements Serializable {
     private Long id;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Long client_id;
-    private Long barber_id;
+    private Long clientId;
+    private Long barberId;
 
     public SchedulingDTO() {
     }
@@ -40,19 +40,19 @@ public class SchedulingDTO implements Serializable {
         this.endDate = endDate;
     }
 
-    public Long getClient_id() {
-        return client_id;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClient_id(Long client_id) {
-        this.client_id = client_id;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Long getBarber_id() {
-        return barber_id;
+    public Long getBarberId() {
+        return barberId;
     }
 
-    public void setBarber_id(Long barber_id) {
-        this.barber_id = barber_id;
+    public void setBarberId(Long barberId) {
+        this.barberId = barberId;
     }
 }

@@ -38,6 +38,14 @@ public class Person {
     @JoinColumn(name = "barber_id")
     private List<Scheduling> barberSchedulings;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "client_id")
+    private List<FinancialRecord> clientFinancialRecords;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "barber_id")
+    private List<FinancialRecord> barberFinancialRecords;
+
     public Person() {
     }
 
@@ -145,5 +153,21 @@ public class Person {
 
     public void removeBarberSchedulings(Scheduling scheduling){
         this.barberSchedulings.remove(scheduling);
+    }
+
+    public List<FinancialRecord> getClientFinancialRecords() {
+        return clientFinancialRecords;
+    }
+
+    public void setClientFinancialRecords(List<FinancialRecord> clientFinancialRecords) {
+        this.clientFinancialRecords = clientFinancialRecords;
+    }
+
+    public List<FinancialRecord> getBarberFinancialRecords() {
+        return barberFinancialRecords;
+    }
+
+    public void setBarberFinancialRecords(List<FinancialRecord> barberFinancialRecords) {
+        this.barberFinancialRecords = barberFinancialRecords;
     }
 }

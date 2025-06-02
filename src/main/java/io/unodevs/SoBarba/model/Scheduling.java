@@ -21,6 +21,9 @@ public class Scheduling {
     @JoinColumn(name = "barber_id", insertable = false, updatable = false)
     private Person barber;
 
+    @OneToOne(mappedBy = "scheduling")
+    private FinancialRecord financialRecord;
+
     public Scheduling() {
     }
 
@@ -62,5 +65,13 @@ public class Scheduling {
 
     public void setBarber(Person barber) {
         this.barber = barber;
+    }
+
+    public FinancialRecord getFinancialRecord() {
+        return financialRecord;
+    }
+
+    public void setFinancialRecord(FinancialRecord financialRecord) {
+        this.financialRecord = financialRecord;
     }
 }

@@ -4,6 +4,8 @@ import io.unodevs.SoBarba.model.enumerator.FinancialStatus;
 import io.unodevs.SoBarba.model.enumerator.FinancialType;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class FinancialRecord {
     @Id
@@ -26,6 +28,15 @@ public class FinancialRecord {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "scheduling_id", referencedColumnName = "id")
     private Scheduling scheduling;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "financial_id")
+    private List<TaskRecord> taskRecords;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "financial_id")
+    private List<ProductRecord> productRecords;
+
 
     public Long getId() {
         return id;
@@ -81,5 +92,21 @@ public class FinancialRecord {
 
     public void setScheduling(Scheduling scheduling) {
         this.scheduling = scheduling;
+    }
+
+    public List<TaskRecord> getTaskRecords() {
+        return taskRecords;
+    }
+
+    public void setTaskRecords(List<TaskRecord> taskRecords) {
+        this.taskRecords = taskRecords;
+    }
+
+    public List<ProductRecord> getProductRecords() {
+        return productRecords;
+    }
+
+    public void setProductRecords(List<ProductRecord> productRecords) {
+        this.productRecords = productRecords;
     }
 }

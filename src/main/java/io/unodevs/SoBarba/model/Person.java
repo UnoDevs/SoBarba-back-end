@@ -163,6 +163,13 @@ public class Person {
         this.clientFinancialRecords = clientFinancialRecords;
     }
 
+    public void addClientFinancialRecords(FinancialRecord financialRecord){
+        this.clientFinancialRecords.add(financialRecord);
+        financialRecord.setClient(this);
+    }
+
+    public void removeClientFinancialRecords(FinancialRecord financialRecord){this.clientFinancialRecords.remove(financialRecord);}
+
     public List<FinancialRecord> getBarberFinancialRecords() {
         return barberFinancialRecords;
     }
@@ -170,4 +177,12 @@ public class Person {
     public void setBarberFinancialRecords(List<FinancialRecord> barberFinancialRecords) {
         this.barberFinancialRecords = barberFinancialRecords;
     }
+
+    public void addBarberFinancialRecords(FinancialRecord financialRecord){
+        this.barberFinancialRecords.add(financialRecord);
+        financialRecord.setBarber(this);
+    }
+
+    public void removeBarberFinancialRecords(FinancialRecord financialRecord){this.barberFinancialRecords.remove(financialRecord);}
+
 }

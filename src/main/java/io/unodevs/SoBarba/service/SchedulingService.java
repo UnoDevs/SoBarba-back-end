@@ -54,7 +54,7 @@ public class SchedulingService {
         return response;
     }
 
-    public SchedulingDTO updateById(SchedulingDTO dto, Long id){
+    public SchedulingDTO updateById(Long id,SchedulingDTO dto){
         Scheduling scheduling = validateOptional(schedulingRepository.findByIdWithPersons(id));
 
         scheduling.setEndDate(dto.getEndDate());

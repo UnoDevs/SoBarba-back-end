@@ -12,9 +12,5 @@ public class FinancialRecordService {
     @Autowired
     private FinancialRecordRepository financialRecordRepository;
     @Autowired
-    private ProductRecordRepository productRecordRepository;
-    @Autowired
-    private TaskRecordRepository taskRecordRepository;
-    @Autowired
     private FinancialRecordMapper financialRecordMapper;
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskRecordRepository extends JpaRepository<TaskRepository,Long> {
-    
+
 }

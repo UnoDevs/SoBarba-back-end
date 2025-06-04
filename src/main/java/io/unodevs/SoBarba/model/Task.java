@@ -2,6 +2,8 @@ package io.unodevs.SoBarba.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Task {
 
@@ -22,6 +24,10 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "task_id")
+    private List<TaskRecord> taskRecords;
 
     public Task() {
     }
@@ -80,5 +86,20 @@ public class Task {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<TaskRecord> getTaskRecords() {
+        return taskRecords;
+    }
+
+    public void addTaskRecords(TaskRecord taskRecord){
+        this.taskRecords.add(taskRecord);
+        taskRecord.setTask(this);
+    }
+
+    public void removeTaskRecords(TaskRecord taskRecord){this.taskRecords.remove(taskRecord);}
+
+    public void setTaskRecords(List<TaskRecord> taskRecords) {
+        this.taskRecords = taskRecords;
     }
 }

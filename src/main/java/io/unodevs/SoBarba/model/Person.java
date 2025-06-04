@@ -30,6 +30,22 @@ public class Person {
     @JoinColumn(name = "employee_data_id", referencedColumnName = "id")
     private EmployeeData employeeData;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "client_id")
+    private List<Scheduling> clientSchedulings;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "barber_id")
+    private List<Scheduling> barberSchedulings;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "client_id")
+    private List<FinancialRecord> clientFinancialRecords;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "barber_id")
+    private List<FinancialRecord> barberFinancialRecords;
+
     public Person() {
     }
 
@@ -104,4 +120,69 @@ public class Person {
     public void setEmployeeData(EmployeeData employeeData) {
         this.employeeData = employeeData;
     }
+
+    public List<Scheduling> getClientSchedulings() {
+        return clientSchedulings;
+    }
+
+    public void setClientSchedulings(List<Scheduling> clientSchedulings) {
+        this.clientSchedulings = clientSchedulings;
+    }
+
+    public void addClientSchedulings(Scheduling scheduling){
+        this.clientSchedulings.add(scheduling);
+        scheduling.setClient(this);
+    }
+
+    public void removeClientSchedulings(Scheduling scheduling){
+        this.clientSchedulings.remove(scheduling);
+    }
+
+    public List<Scheduling> getBarberSchedulings() {
+        return barberSchedulings;
+    }
+
+    public void setBarberSchedulings(List<Scheduling> barberSchedulings) {
+        this.barberSchedulings = barberSchedulings;
+    }
+
+    public void addBarberSchedulings(Scheduling scheduling){
+        this.barberSchedulings.add(scheduling);
+        scheduling.setBarber(this);
+    }
+
+    public void removeBarberSchedulings(Scheduling scheduling){
+        this.barberSchedulings.remove(scheduling);
+    }
+
+    public List<FinancialRecord> getClientFinancialRecords() {
+        return clientFinancialRecords;
+    }
+
+    public void setClientFinancialRecords(List<FinancialRecord> clientFinancialRecords) {
+        this.clientFinancialRecords = clientFinancialRecords;
+    }
+
+    public void addClientFinancialRecords(FinancialRecord financialRecord){
+        this.clientFinancialRecords.add(financialRecord);
+        financialRecord.setClient(this);
+    }
+
+    public void removeClientFinancialRecords(FinancialRecord financialRecord){this.clientFinancialRecords.remove(financialRecord);}
+
+    public List<FinancialRecord> getBarberFinancialRecords() {
+        return barberFinancialRecords;
+    }
+
+    public void setBarberFinancialRecords(List<FinancialRecord> barberFinancialRecords) {
+        this.barberFinancialRecords = barberFinancialRecords;
+    }
+
+    public void addBarberFinancialRecords(FinancialRecord financialRecord){
+        this.barberFinancialRecords.add(financialRecord);
+        financialRecord.setBarber(this);
+    }
+
+    public void removeBarberFinancialRecords(FinancialRecord financialRecord){this.barberFinancialRecords.remove(financialRecord);}
+
 }

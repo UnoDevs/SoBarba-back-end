@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.Person;
-import io.unodevs.SoBarba.model.dto.PersonDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.unodevs.SoBarba.dto.PersonDTO;
 import io.unodevs.SoBarba.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Tag(name = "Controlador de Pessoa")
 @RestController
 @RequestMapping("/person")
 public class PersonController {

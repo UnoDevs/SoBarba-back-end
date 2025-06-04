@@ -1,6 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.dto.ProductDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.unodevs.SoBarba.dto.ProductDTO;
 import io.unodevs.SoBarba.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@Controller
+@Tag(name = "Controlador de Produto")
+@RestController
 @RequestMapping("/product")
 public class ProductController {
     

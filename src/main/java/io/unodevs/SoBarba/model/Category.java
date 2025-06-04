@@ -19,7 +19,6 @@ public class Category {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private List<Product> products;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private List<Task> tasks;

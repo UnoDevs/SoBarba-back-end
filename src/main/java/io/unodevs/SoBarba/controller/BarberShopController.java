@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.controller;
 
-import io.unodevs.SoBarba.model.BarberShop;
-import io.unodevs.SoBarba.model.dto.BarberShopDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.unodevs.SoBarba.dto.BarberShopDTO;
 import io.unodevs.SoBarba.service.BarberShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Tag(name = "Controlador de Barbeiras")
 @RestController
 @RequestMapping("/barbershop")
 public class BarberShopController {

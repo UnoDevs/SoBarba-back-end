@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.mapper;
 
 import io.unodevs.SoBarba.model.Person;
-import io.unodevs.SoBarba.model.dto.PersonDTO;
+import io.unodevs.SoBarba.dto.PersonDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

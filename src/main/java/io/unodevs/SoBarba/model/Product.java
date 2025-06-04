@@ -2,6 +2,7 @@ package io.unodevs.SoBarba.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -25,9 +26,11 @@ public class Product {
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
-    public Product() {
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "product_id")
+    private List<ProductRecord> productRecords;
 
-    }
+    public Product() {}
 
     public Long getId() {
         return id;
@@ -85,4 +88,18 @@ public class Product {
         this.category = category;
     }
 
+    public List<ProductRecord> getProductRecords() {
+        return productRecords;
+    }
+
+    public void addProductRecords(ProductRecord productRecord){
+        this.productRecords.add(productRecord);
+        productRecord.setProduct(this);
+    }
+
+    public void removeTaskRecords(ProductRecord productRecord){this.productRecords.remove(productRecord);}
+
+    public void setProductRecords(List<ProductRecord> productRecords) {
+        this.productRecords = productRecords;
+    }
 }

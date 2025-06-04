@@ -1,7 +1,7 @@
 package io.unodevs.SoBarba.mapper;
 
 import io.unodevs.SoBarba.model.Task;
-import io.unodevs.SoBarba.model.dto.TaskDTO;
+import io.unodevs.SoBarba.dto.TaskDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

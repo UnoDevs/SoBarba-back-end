@@ -1,3 +1,8 @@
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
 spring:
   application:
     name: SoBarba
@@ -5,11 +10,20 @@ spring:
     user:
       name: user
       password: unodevstest
+  datasource:
+    url: jdbc:postgresql://maglev.proxy.rlwy.net:34161/sobarba
+    username: postgres
+    password: iAKHsUrXBKDeodhJFODfScQTbgoijvvI
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: prd
 server:
   port: 8081
 port: 5173
-springdoc:
-  api-docs:
-    path: /sobarba-api
-  swagger-ui:
-    path: /sobarba-docs
+logging:
+  level:
+    root: WARN

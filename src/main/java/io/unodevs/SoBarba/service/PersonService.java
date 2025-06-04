@@ -1,11 +1,11 @@
 package io.unodevs.SoBarba.service;
 
-import io.unodevs.SoBarba.exception.InvalidEntityResponseException;
+import io.unodevs.SoBarba.exception.InvalidEntityRequestException;
 import io.unodevs.SoBarba.mapper.PersonMapper;
 import io.unodevs.SoBarba.model.EmployeeData;
 import io.unodevs.SoBarba.model.Person;
-import io.unodevs.SoBarba.model.dto.EmployeeDataDTO;
-import io.unodevs.SoBarba.model.dto.PersonDTO;
+import io.unodevs.SoBarba.dto.EmployeeDataDTO;
+import io.unodevs.SoBarba.dto.PersonDTO;
 import io.unodevs.SoBarba.model.enumerator.PersonType;
 import io.unodevs.SoBarba.repository.EmployeeDataRepository;
 import io.unodevs.SoBarba.repository.PersonRepository;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static io.unodevs.SoBarba.service.util.ValidateEntityService.validateOptional;
 
@@ -40,6 +39,8 @@ public class PersonService {
 
         if(!entity.getPersonTypes().contains(PersonType.EMPLOYEE)){
             entity.setEmployeeData(null);
+        } else if(entity.getEmployeeData() == null) {
+            throw new InvalidEntityRequestException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
         }
 
         personRepository.save(entity);
@@ -52,7 +53,7 @@ public class PersonService {
         boolean isEmployee = dto.getPersonTypes().contains(PersonType.EMPLOYEE);
 
         if(isEmployee && dto.getEmployeeData() == null){
-            throw new InvalidEntityResponseException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
+            throw new InvalidEntityRequestException("Person with type EMPLOYEE but without EMPLOYEE_DATA filled");
         }
 
         entity.setName(dto.getName());

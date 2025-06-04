@@ -3,7 +3,7 @@ package io.unodevs.SoBarba.service;
 import io.unodevs.SoBarba.mapper.ProductMapper;
 import io.unodevs.SoBarba.model.Category;
 import io.unodevs.SoBarba.model.Product;
-import io.unodevs.SoBarba.model.dto.ProductDTO;
+import io.unodevs.SoBarba.dto.ProductDTO;
 import io.unodevs.SoBarba.repository.CategoryRepository;
 import io.unodevs.SoBarba.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -15,6 +15,7 @@ public class EmployeeData {
     private LocalDate terminationDate;
     private Double salary;
     private Double commission;
+    @Enumerated(EnumType.STRING)
     private JobTitleType jobTitle;
     @OneToOne(mappedBy = "employeeData")
     private Person person;

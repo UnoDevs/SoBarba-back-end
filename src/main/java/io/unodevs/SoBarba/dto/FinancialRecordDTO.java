@@ -15,8 +15,8 @@ public class FinancialRecordDTO implements Serializable {
     private FinancialType type;
     private FinancialStatus status;
     private Long clientId;
-    private Long barber;
-    private Long scheduling;
+    private Long barberId;
+    private Long schedulingId;
     private List<ProductRecordDTO> products;
     private List<TaskRecordDTO> tasks;
 
@@ -63,20 +63,20 @@ public class FinancialRecordDTO implements Serializable {
         this.clientId = clientId;
     }
 
-    public Long getBarber() {
-        return barber;
+    public Long getBarberId() {
+        return barberId;
     }
 
-    public void setBarber(Long barber) {
-        this.barber = barber;
+    public void setBarberId(Long barberId) {
+        this.barberId = barberId;
     }
 
-    public Long getScheduling() {
-        return scheduling;
+    public Long getSchedulingId() {
+        return schedulingId;
     }
 
-    public void setScheduling(Long scheduling) {
-        this.scheduling = scheduling;
+    public void setSchedulingId(Long schedulingId) {
+        this.schedulingId = schedulingId;
     }
 
     public LocalDate getIssueDate() {

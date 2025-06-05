@@ -14,12 +14,12 @@
 	<name>SoBarba</name>
 	<description>API para comunicação front e alimentação de dados do projeto SoBarba</description>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>21</java.version>
 		<springdoc.version>2.7.0</springdoc.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<java-jwt.version>4.4.0</java-jwt.version>
-		<maven.compiler.source>23</maven.compiler.source>
-		<maven.compiler.target>23</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -26,4 +26,6 @@ server:
 port: 5173
 logging:
   level:
-    root: WARN
+    root: INFO
+    org.springframework: DEBUG
+    org.hibernate.SQL: DEBUG

@@ -11,9 +11,9 @@ spring:
       name: user
       password: unodevstest
   datasource:
-    url: jdbc:postgresql://postgres.railway.internal:5432/sobarba
+    url: ${PGHOST}
     username: postgres
-    password: atAhMVOdzBUYCIPcyUARdoAqQtBzZSEU
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

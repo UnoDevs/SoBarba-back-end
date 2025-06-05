@@ -22,7 +22,7 @@ spring:
       hibernate:
         default_schema: prd
 server:
-  port: 8081
+  port: 8080
 port: 5173
 logging:
   level:

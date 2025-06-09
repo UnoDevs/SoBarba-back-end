@@ -17,7 +17,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: none
     properties:
       hibernate:
         default_schema: prd
@@ -26,6 +26,4 @@ server:
 port: 5173
 logging:
   level:
-    root: INFO
-    org.springframework: DEBUG
-    org.hibernate.SQL: DEBUG
+    root: WARN

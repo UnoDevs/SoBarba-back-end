@@ -11,7 +11,7 @@ spring:
       name: user
       password: unodevstest
   datasource:
-    url: ${PGHOST}
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/sobarba
     username: postgres
     password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver

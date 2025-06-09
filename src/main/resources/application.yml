@@ -11,10 +11,14 @@ spring:
       name: user
       password: unodevstest
   datasource:
-    url: jdbc:postgresql://maglev.proxy.rlwy.net:34161/sobarba
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/sobarba
     username: postgres
-    password: iAKHsUrXBKDeodhJFODfScQTbgoijvvI
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
+    hiraki:
+      connection-timeout: 30000
+      idle-timeout: 60000
+      max-lifetime: 1800000
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,7 +26,7 @@ spring:
       hibernate:
         default_schema: prd
 server:
-  port: 8081
+  port: ${PORT:8080}
 port: 5173
 logging:
   level:

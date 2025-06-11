@@ -11,9 +11,9 @@ spring:
       name: user
       password: unodevstest
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/sobarba
+    url: jdbc:postgresql://${PGHOST:maglev.proxy.rlwy.net}:${PGPORT:34161}/sobarba
     username: postgres
-    password: ${PGPASSWORD}
+    password: ${PGPASSWORD:iAKHsUrXBKDeodhJFODfScQTbgoijvvI}
     driver-class-name: org.postgresql.Driver
     hiraki:
       connection-timeout: 30000
